@@ -1,0 +1,138 @@
+//linklist class
+
+public class link {
+    public String data;
+    public link previous;
+    public link next;
+
+public link(link currentPrevious, String currentData, link currentNext){
+   data=currentData;
+   previous=currentPrevious;
+   next=currentNext;
+}
+
+public String Data(){
+return data;}
+}
+
+//doublylinklist
+public class DoubleLink {
+link front=null;
+int size=0;
+
+
+public void addFront(String data){
+ if(front==null){
+  front=new link(null, data, null);}
+else
+{ link newFront=new link(null, data, front);
+   
+    front=newFront;
+}
+   size++;
+}
+
+public void addRear(String data){
+ if(front==null){
+ front =new link(null, data, null);
+}
+ else
+{
+ link current=front;
+ while(current.next!=null)
+{current=current.next;
+}
+
+link newLink=new link(current, data, null);
+}
+size++;
+}
+
+
+public void remFront(){
+if (front==null|| front.next==null)
+{return;
+}
+else{
+front=front.next;
+front.previous =null;
+size=size-1;
+}}
+
+public void remRear(){
+if (front==null||front.next==null)
+{return ;}
+else
+{link current=front;
+
+while (current.next.next!=null)
+{current=current.next;}
+  current.next=null;}
+  size=size-1;}
+
+public boolean isEmpty (){
+    return front==null;}
+
+public void print(){
+    link current=front;
+    while(current!=null){
+     System.out.println(current.Data());
+        current=current.next;
+    }}
+        
+public void mian (){
+    DoubleLink Dl=new DoubleLink ();
+    System.out.println("the back added");
+    Dl.addRear("you");
+    Dl.print();
+    System.out.println("the front added");
+    Dl.addFront("I");
+    Dl.addFront("our");
+    Dl.print();
+    System.out.println("removed the front");
+    Dl.remFront();
+    Dl.remRear();
+    Dl.print();
+   
+    
+}
+}
+
+
+//use stack function to push and pop data in and out
+import java.io.*; 
+import java.util.*;
+
+
+public class stack {
+     public link top;
+     public int size;
+     public void push(String data){
+         link tempTop=new link( null, data, null);
+         tempTop.next=top;
+         top=tempTop;
+         size++;
+        }
+       public boolean isEmpty(){
+                return top==null;} 
+       public String pop(){
+          if(isEmpty()){
+              return null;}
+              else {
+                  String temp=top.data;
+                  top=top.next;
+                  return temp;
+                }
+            }
+    
+                
+    public void main(){
+        stack stackNew=new stack();
+        stackNew.push("we");
+        stackNew.push("I");
+        stackNew.push("us");
+        System.out.println(stackNew.pop());
+        System.out.println(stackNew.pop());
+        System.out.println(stackNew.pop());
+    }
+}
